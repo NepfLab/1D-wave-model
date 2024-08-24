@@ -4,5 +4,4 @@ This repository is the simple 1D wave model written in MATLAB to model the progr
 
 # File access
 - The 'srcs' folder includes the MATLAB functions to construct the 1D wave model.
-- The 'script' folder includes an example of how to apply the 1D wave model.
-- The inputs required are 1D bathymetry profile at a resolution that matches with the step interval between wave height modeling, vegetation species and their morphology, offshore wave period and wave height. 
+- The 'script' folder includes an example of how to apply the 1D wave model. The inputs required are 1D bathymetry profile at a resolution that matches with the step interval between wave height modeling, vegetation species and their morphology, offshore wave period and wave height. 
