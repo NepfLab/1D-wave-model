@@ -1,6 +1,6 @@
 # 1D wave model
 
-This repository is the simple 1D wave model written in MATLAB to model the progression of wave heights from offshore to shore. The model presented in the manuscript "Insert title". 
+This repository is the simple 1D wave model written in MATLAB to model the progression of wave heights from offshore towards the land. The model presented in the manuscript "Insert title". 
 
 The model captures four different mechanisms that affect wave propagation in the cross-shore direction, including wave breaking, vegetation drag, shoaling, and bed friction. In particular, the vegetation drag is computed based on plant morphology without any emprirically calibrated parameters. At each spatial step, the model takes wave height and the effects of the four mechanisms to compute the wave height at the next spatial step. 
 
