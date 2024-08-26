@@ -6,4 +6,4 @@ The model captures four different mechanisms that affect wave propagation in the
 
 ## File access
 - The 'func' folder contains the MATLAB functions to run the 1-D wave model example script 'wave_model_example.m'.
-- The 'script' folder includes an example of how to apply the 1D wave model in the script 'wave_model_example.m'. The inputs required are 1D bathymetry profile at a resolution that matches with the step interval between each wave height modeling, vegetation species and their morphology, offshore wave period and wave height. 
+- The 'script' folder contains an example of how to apply the 1-D wave model in the script 'wave_model_example.m'. The inputs required are 1-D bathymetry profile at a resolution that matches with the step interval between each wave height modeling, vegetation species and their morphology, and offshore wave period and wave height. 
