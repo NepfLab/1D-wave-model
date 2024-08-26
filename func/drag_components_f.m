@@ -8,26 +8,16 @@ function [K_amp_plotting] = drag_components_f(aw_list)
 %   Output variables:
     %   1: K_amp_plotting = struct of vegetation characteristics.
 
-%   
-%   
 
-
-aw_list = aw_list;% input table
-
-%drag_list = NaN(size(aw_list,1),11); % create list to store distances, water depth, aw, aw ratio, wave velocity, K_v, K_sh, state
-
-x = aw_list(:,1); % Copy distance from starting amplitude
-
-%aw_inc = aw_list(1:end-1,3) - aw_list(2:end,3);
+%% 1.0: Initial set up to store results
 aw_inc = aw_list(2:end,3) - aw_list(1:end-1,3);
-
 
 K_v_vec = aw_list(1:end-1,6); 
 K_sh_vec = aw_list(1:end-1,7); 
 K_br_vec = aw_list(1:end-1,8); 
 K_bed_vec = aw_list(1:end-1,9); 
 
-% shoaling coefficient may be greater than one
+% 1.1: shoaling coefficient may be greater than one
 K_sh_inv_vec = NaN(size(K_sh_vec)); 
 K_sh_binary = zeros(size(K_sh_vec)); 
 
@@ -41,28 +31,27 @@ for row = 1:length(K_sh_vec)
     end
 end
 
-% common demoninator
+
+%% 2.0: Breakdown contributions from each of the four components
+% 2.1: compute common demoninator
 K_matrix = cat(2, K_v_vec, K_sh_inv_vec, K_br_vec, K_bed_vec); 
 K_matrix_one_minus = 1 - K_matrix; % reduction factor
 
-% proportion of each K
+% 2.2: compute proportion of each K
 sum_vec = sum(K_matrix_one_minus,2); 
 K_prop = K_matrix_one_minus ./ sum_vec;
 
-% adjust for increasing amplitude from shoaling
+% 2.3: adjust for increasing amplitude from shoaling
 K_prop(:,2) = K_prop(:,2).* K_sh_binary;
 
-% amplitude contribution by each K
+% 2.4: amplitude contribution by each K
 sum_prop = sum(K_prop, 2);
 x_vec = aw_inc ./ sum_prop; 
 K_amp = K_prop .* x_vec;
 
-% cummulative amplitude reduction by each K
+% 2.5: cummulative amplitude reduction by each K
 K_amp_cumm = cumsum(K_amp,1);
 
-K_amp_cumm2 = cumsum(K_amp_cumm,2);
-
-%K_amp_plotting =  cat(1, zeros(1,4), K_amp_cumm2);
 K_amp_plotting =  cat(1, zeros(1,4), K_amp_cumm);
 
 
